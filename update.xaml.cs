@@ -21,7 +21,6 @@ namespace TeR
     {
         private List<История_Обновлений> updates;
         private readonly TEntities db;
-        private bool isEditMode = false;
 
         public update(TEntities entities)
         {
