@@ -18,17 +18,39 @@ namespace TeR
 {
     public partial class achievement : Page
     {
+        private List<Отчивки> originalAchievements;
         private List<Отчивки> achievements;
         private readonly TEntities db;
-        private bool isEditMode = false;
 
         public achievement(TEntities entities)
         {
             InitializeComponent();
 
             db = entities;
-            achievements = db.Отчивки.ToList();
+            originalAchievements = db.Отчивки.ToList();
+            achievements = new List<Отчивки>(originalAchievements);
             dataGrid.ItemsSource = achievements;
+        }
+
+        private void DeleteRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid.SelectedItem != null)
+            {
+                Отчивки selectedAchievement = dataGrid.SelectedItem as Отчивки;
+                achievements.Remove(selectedAchievement); // Удаляем выбранный объект из коллекции
+                db.Отчивки.Remove(selectedAchievement); // Удаляем выбранный объект из базы данных
+
+                db.SaveChanges(); // Сохраняем изменения в базе данных
+                dataGrid.Items.Refresh(); // Обновляем DataGrid
+            }
+        }
+
+        private void AddNewRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            Отчивки newAchievement = new Отчивки(); // Создаем новый объект достижения
+            achievements.Add(newAchievement); // Добавляем его в коллекцию
+            dataGrid.Items.Refresh(); // Обновляем DataGrid
+            dataGrid.ScrollIntoView(newAchievement); // Прокручиваем к новому элементу
         }
 
         private bool flagfix = true;
@@ -82,19 +104,6 @@ namespace TeR
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка при сохранении изменений: " + ex.Message);
-            }
-        }
-       private void ToggleEditMode_Click(object sender, RoutedEventArgs e)
-        {
-            isEditMode = !isEditMode; // Переключаем режим
-
-            if (isEditMode)
-            {
-                dataGrid.IsReadOnly = false; // Включаем режим редактирования
-            }
-            else
-            {
-                dataGrid.IsReadOnly = true; // Выключаем режим редактирования
             }
         }
     }
