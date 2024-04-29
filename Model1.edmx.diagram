@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="87f2c48bba12455897c4adad27cb64e5" Name="Diagram1" ZoomLevel="29">
+        <EntityTypeShape EntityType="TModel.Биомы" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TModel.История_Обновлений" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TModel.Классы_персонажей" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TModel.Механики" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="TModel.Отчивки" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TModel.Предметы" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TModel.Растения" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TModel.Режимы_игры" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TModel.События" Width="1.5" PointX="8.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TModel.Существа" Width="1.5" PointX="10.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TModel.Удалённое" Width="1.5" PointX="3" PointY="21.375" IsExpanded="true" />
+        <AssociationConnector Association="TModel.FK__Биомы__update_id__2EDAF651" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Предметы__biome___57DD0BE4" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Растения__biome___531856C7" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__События__biome_i__41EDCAC5" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Существа__biome___5D95E53A" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Классы_пе__updat__29221CFB" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Механики__update__7849DB76" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Отчивки__update___02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Предметы__update__59C55456" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Растения__update__540C7B00" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Режимы_иг__updat__14270015" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__События__update___44CA3770" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Существа__update__5F7E2DAC" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Удалённое__updat__08B54D69" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Предметы__class___58D1301D" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Предметы__event___56E8E7AB" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Предметы__remove__5AB9788F" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Существа__item_i__5E8A0973" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__События__mode_id__43D61337" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__События__removed__42E1EEFE" ManuallyRouted="false" />
+        <AssociationConnector Association="TModel.FK__Существа__remove__607251E5" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

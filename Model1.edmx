@@ -1,0 +1,1141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Биомы">
+          <Key>
+            <PropertyRef Name="biome_id" />
+          </Key>
+          <Property Name="biome_id" Type="int" Nullable="false" />
+          <Property Name="название" Type="varchar" MaxLength="50" />
+          <Property Name="описание" Type="text" />
+          <Property Name="update_id" Type="int" />
+          <Property Name="item_id" Type="int" />
+        </EntityType>
+        <EntityType Name="История Обновлений">
+          <Key>
+            <PropertyRef Name="update_id" />
+          </Key>
+          <Property Name="update_id" Type="int" Nullable="false" />
+          <Property Name="версия" Type="varchar" MaxLength="15" />
+          <Property Name="дата" Type="date" />
+          <Property Name="описание" Type="text" />
+        </EntityType>
+        <EntityType Name="Классы персонажей">
+          <Key>
+            <PropertyRef Name="class_id" />
+          </Key>
+          <Property Name="class_id" Type="int" Nullable="false" />
+          <Property Name="название" Type="varchar" MaxLength="50" />
+          <Property Name="описание" Type="text" />
+          <Property Name="update_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Механики">
+          <Key>
+            <PropertyRef Name="mechanic_id" />
+          </Key>
+          <Property Name="mechanic_id" Type="int" Nullable="false" />
+          <Property Name="название" Type="varchar" MaxLength="50" />
+          <Property Name="описание" Type="text" />
+          <Property Name="update_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Отчивки">
+          <Key>
+            <PropertyRef Name="achievement_id" />
+          </Key>
+          <Property Name="achievement_id" Type="int" Nullable="false" />
+          <Property Name="название" Type="varchar" MaxLength="50" />
+          <Property Name="условия_выполнения" Type="varchar" MaxLength="255" />
+          <Property Name="update_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Предметы">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="int" Nullable="false" />
+          <Property Name="название" Type="varchar" MaxLength="50" />
+          <Property Name="тип" Type="varchar" MaxLength="50" />
+          <Property Name="описание" Type="text" />
+          <Property Name="event_id" Type="int" />
+          <Property Name="biome_id" Type="int" />
+          <Property Name="class_id" Type="int" />
+          <Property Name="update_id" Type="int" />
+          <Property Name="removed_id" Type="int" />
+          <Property Name="plant_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Растения">
+          <Key>
+            <PropertyRef Name="plant_id" />
+          </Key>
+          <Property Name="plant_id" Type="int" Nullable="false" />
+          <Property Name="название" Type="varchar" MaxLength="50" />
+          <Property Name="тип" Type="varchar" MaxLength="50" />
+          <Property Name="описание" Type="text" />
+          <Property Name="biome_id" Type="int" />
+          <Property Name="update_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Режимы игры">
+          <Key>
+            <PropertyRef Name="mode_id" />
+          </Key>
+          <Property Name="mode_id" Type="int" Nullable="false" />
+          <Property Name="название" Type="varchar" MaxLength="50" />
+          <Property Name="описание" Type="text" />
+          <Property Name="update_id" Type="int" />
+        </EntityType>
+        <EntityType Name="События">
+          <Key>
+            <PropertyRef Name="event_id" />
+          </Key>
+          <Property Name="event_id" Type="int" Nullable="false" />
+          <Property Name="название" Type="varchar" MaxLength="50" />
+          <Property Name="описание" Type="text" />
+          <Property Name="biome_id" Type="int" />
+          <Property Name="removed_id" Type="int" />
+          <Property Name="mode_id" Type="int" />
+          <Property Name="update_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Существа">
+          <Key>
+            <PropertyRef Name="creature_id" />
+          </Key>
+          <Property Name="creature_id" Type="int" Nullable="false" />
+          <Property Name="имя" Type="varchar" MaxLength="50" />
+          <Property Name="тип" Type="varchar" MaxLength="50" />
+          <Property Name="описание" Type="text" />
+          <Property Name="biome_id" Type="int" />
+          <Property Name="item_id" Type="int" />
+          <Property Name="update_id" Type="int" />
+          <Property Name="removed_id" Type="int" />
+          <Property Name="mode_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Удалённое">
+          <Key>
+            <PropertyRef Name="removed_id" />
+          </Key>
+          <Property Name="removed_id" Type="int" Nullable="false" />
+          <Property Name="название" Type="varchar" MaxLength="50" />
+          <Property Name="описание" Type="text" />
+          <Property Name="update_id" Type="int" />
+        </EntityType>
+        <Association Name="FK__Биомы__update_id__2EDAF651">
+          <End Role="История Обновлений" Type="Self.История Обновлений" Multiplicity="0..1" />
+          <End Role="Биомы" Type="Self.Биомы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Биомы">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Классы пе__updat__29221CFB">
+          <End Role="История Обновлений" Type="Self.История Обновлений" Multiplicity="0..1" />
+          <End Role="Классы персонажей" Type="Self.Классы персонажей" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Классы персонажей">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Механики__update__7849DB76">
+          <End Role="История Обновлений" Type="Self.История Обновлений" Multiplicity="0..1" />
+          <End Role="Механики" Type="Self.Механики" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Механики">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Отчивки__update___02FC7413">
+          <End Role="История Обновлений" Type="Self.История Обновлений" Multiplicity="0..1" />
+          <End Role="Отчивки" Type="Self.Отчивки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Отчивки">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Предметы__biome___57DD0BE4">
+          <End Role="Биомы" Type="Self.Биомы" Multiplicity="0..1" />
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Биомы">
+              <PropertyRef Name="biome_id" />
+            </Principal>
+            <Dependent Role="Предметы">
+              <PropertyRef Name="biome_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Предметы__class___58D1301D">
+          <End Role="Классы персонажей" Type="Self.Классы персонажей" Multiplicity="0..1" />
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Классы персонажей">
+              <PropertyRef Name="class_id" />
+            </Principal>
+            <Dependent Role="Предметы">
+              <PropertyRef Name="class_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Предметы__event___56E8E7AB">
+          <End Role="События" Type="Self.События" Multiplicity="0..1" />
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="События">
+              <PropertyRef Name="event_id" />
+            </Principal>
+            <Dependent Role="Предметы">
+              <PropertyRef Name="event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Предметы__remove__5AB9788F">
+          <End Role="Удалённое" Type="Self.Удалённое" Multiplicity="0..1" />
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Удалённое">
+              <PropertyRef Name="removed_id" />
+            </Principal>
+            <Dependent Role="Предметы">
+              <PropertyRef Name="removed_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Предметы__update__59C55456">
+          <End Role="История Обновлений" Type="Self.История Обновлений" Multiplicity="0..1" />
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Предметы">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Растения__biome___531856C7">
+          <End Role="Биомы" Type="Self.Биомы" Multiplicity="0..1" />
+          <End Role="Растения" Type="Self.Растения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Биомы">
+              <PropertyRef Name="biome_id" />
+            </Principal>
+            <Dependent Role="Растения">
+              <PropertyRef Name="biome_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Растения__update__540C7B00">
+          <End Role="История Обновлений" Type="Self.История Обновлений" Multiplicity="0..1" />
+          <End Role="Растения" Type="Self.Растения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Растения">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Режимы иг__updat__14270015">
+          <End Role="История Обновлений" Type="Self.История Обновлений" Multiplicity="0..1" />
+          <End Role="Режимы игры" Type="Self.Режимы игры" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Режимы игры">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__События__biome_i__41EDCAC5">
+          <End Role="Биомы" Type="Self.Биомы" Multiplicity="0..1" />
+          <End Role="События" Type="Self.События" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Биомы">
+              <PropertyRef Name="biome_id" />
+            </Principal>
+            <Dependent Role="События">
+              <PropertyRef Name="biome_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__События__mode_id__43D61337">
+          <End Role="Режимы игры" Type="Self.Режимы игры" Multiplicity="0..1" />
+          <End Role="События" Type="Self.События" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Режимы игры">
+              <PropertyRef Name="mode_id" />
+            </Principal>
+            <Dependent Role="События">
+              <PropertyRef Name="mode_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__События__removed__42E1EEFE">
+          <End Role="Удалённое" Type="Self.Удалённое" Multiplicity="0..1" />
+          <End Role="События" Type="Self.События" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Удалённое">
+              <PropertyRef Name="removed_id" />
+            </Principal>
+            <Dependent Role="События">
+              <PropertyRef Name="removed_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__События__update___44CA3770">
+          <End Role="История Обновлений" Type="Self.История Обновлений" Multiplicity="0..1" />
+          <End Role="События" Type="Self.События" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="События">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Существа__biome___5D95E53A">
+          <End Role="Биомы" Type="Self.Биомы" Multiplicity="0..1" />
+          <End Role="Существа" Type="Self.Существа" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Биомы">
+              <PropertyRef Name="biome_id" />
+            </Principal>
+            <Dependent Role="Существа">
+              <PropertyRef Name="biome_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Существа__item_i__5E8A0973">
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="0..1" />
+          <End Role="Существа" Type="Self.Существа" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предметы">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="Существа">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Существа__remove__607251E5">
+          <End Role="Удалённое" Type="Self.Удалённое" Multiplicity="0..1" />
+          <End Role="Существа" Type="Self.Существа" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Удалённое">
+              <PropertyRef Name="removed_id" />
+            </Principal>
+            <Dependent Role="Существа">
+              <PropertyRef Name="removed_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Существа__update__5F7E2DAC">
+          <End Role="История Обновлений" Type="Self.История Обновлений" Multiplicity="0..1" />
+          <End Role="Существа" Type="Self.Существа" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Существа">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Удалённое__updat__08B54D69">
+          <End Role="История Обновлений" Type="Self.История Обновлений" Multiplicity="0..1" />
+          <End Role="Удалённое" Type="Self.Удалённое" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Удалённое">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TModelContainer">
+          <EntitySet Name="Биомы" EntityType="Self.Биомы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="История Обновлений" EntityType="Self.История Обновлений" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Классы персонажей" EntityType="Self.Классы персонажей" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Механики" EntityType="Self.Механики" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Отчивки" EntityType="Self.Отчивки" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Предметы" EntityType="Self.Предметы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Растения" EntityType="Self.Растения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Режимы игры" EntityType="Self.Режимы игры" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="События" EntityType="Self.События" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Существа" EntityType="Self.Существа" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Удалённое" EntityType="Self.Удалённое" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Биомы__update_id__2EDAF651" Association="Self.FK__Биомы__update_id__2EDAF651">
+            <End Role="История Обновлений" EntitySet="История Обновлений" />
+            <End Role="Биомы" EntitySet="Биомы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Классы пе__updat__29221CFB" Association="Self.FK__Классы пе__updat__29221CFB">
+            <End Role="История Обновлений" EntitySet="История Обновлений" />
+            <End Role="Классы персонажей" EntitySet="Классы персонажей" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Механики__update__7849DB76" Association="Self.FK__Механики__update__7849DB76">
+            <End Role="История Обновлений" EntitySet="История Обновлений" />
+            <End Role="Механики" EntitySet="Механики" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Отчивки__update___02FC7413" Association="Self.FK__Отчивки__update___02FC7413">
+            <End Role="История Обновлений" EntitySet="История Обновлений" />
+            <End Role="Отчивки" EntitySet="Отчивки" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Предметы__biome___57DD0BE4" Association="Self.FK__Предметы__biome___57DD0BE4">
+            <End Role="Биомы" EntitySet="Биомы" />
+            <End Role="Предметы" EntitySet="Предметы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Предметы__class___58D1301D" Association="Self.FK__Предметы__class___58D1301D">
+            <End Role="Классы персонажей" EntitySet="Классы персонажей" />
+            <End Role="Предметы" EntitySet="Предметы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Предметы__event___56E8E7AB" Association="Self.FK__Предметы__event___56E8E7AB">
+            <End Role="События" EntitySet="События" />
+            <End Role="Предметы" EntitySet="Предметы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Предметы__remove__5AB9788F" Association="Self.FK__Предметы__remove__5AB9788F">
+            <End Role="Удалённое" EntitySet="Удалённое" />
+            <End Role="Предметы" EntitySet="Предметы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Предметы__update__59C55456" Association="Self.FK__Предметы__update__59C55456">
+            <End Role="История Обновлений" EntitySet="История Обновлений" />
+            <End Role="Предметы" EntitySet="Предметы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Растения__biome___531856C7" Association="Self.FK__Растения__biome___531856C7">
+            <End Role="Биомы" EntitySet="Биомы" />
+            <End Role="Растения" EntitySet="Растения" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Растения__update__540C7B00" Association="Self.FK__Растения__update__540C7B00">
+            <End Role="История Обновлений" EntitySet="История Обновлений" />
+            <End Role="Растения" EntitySet="Растения" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Режимы иг__updat__14270015" Association="Self.FK__Режимы иг__updat__14270015">
+            <End Role="История Обновлений" EntitySet="История Обновлений" />
+            <End Role="Режимы игры" EntitySet="Режимы игры" />
+          </AssociationSet>
+          <AssociationSet Name="FK__События__biome_i__41EDCAC5" Association="Self.FK__События__biome_i__41EDCAC5">
+            <End Role="Биомы" EntitySet="Биомы" />
+            <End Role="События" EntitySet="События" />
+          </AssociationSet>
+          <AssociationSet Name="FK__События__mode_id__43D61337" Association="Self.FK__События__mode_id__43D61337">
+            <End Role="Режимы игры" EntitySet="Режимы игры" />
+            <End Role="События" EntitySet="События" />
+          </AssociationSet>
+          <AssociationSet Name="FK__События__removed__42E1EEFE" Association="Self.FK__События__removed__42E1EEFE">
+            <End Role="Удалённое" EntitySet="Удалённое" />
+            <End Role="События" EntitySet="События" />
+          </AssociationSet>
+          <AssociationSet Name="FK__События__update___44CA3770" Association="Self.FK__События__update___44CA3770">
+            <End Role="История Обновлений" EntitySet="История Обновлений" />
+            <End Role="События" EntitySet="События" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Существа__biome___5D95E53A" Association="Self.FK__Существа__biome___5D95E53A">
+            <End Role="Биомы" EntitySet="Биомы" />
+            <End Role="Существа" EntitySet="Существа" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Существа__item_i__5E8A0973" Association="Self.FK__Существа__item_i__5E8A0973">
+            <End Role="Предметы" EntitySet="Предметы" />
+            <End Role="Существа" EntitySet="Существа" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Существа__remove__607251E5" Association="Self.FK__Существа__remove__607251E5">
+            <End Role="Удалённое" EntitySet="Удалённое" />
+            <End Role="Существа" EntitySet="Существа" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Существа__update__5F7E2DAC" Association="Self.FK__Существа__update__5F7E2DAC">
+            <End Role="История Обновлений" EntitySet="История Обновлений" />
+            <End Role="Существа" EntitySet="Существа" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Удалённое__updat__08B54D69" Association="Self.FK__Удалённое__updat__08B54D69">
+            <End Role="История Обновлений" EntitySet="История Обновлений" />
+            <End Role="Удалённое" EntitySet="Удалённое" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Биомы">
+          <Key>
+            <PropertyRef Name="biome_id" />
+          </Key>
+          <Property Name="biome_id" Type="Int32" Nullable="false" />
+          <Property Name="название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="update_id" Type="Int32" />
+          <Property Name="item_id" Type="Int32" />
+          <NavigationProperty Name="История_Обновлений" Relationship="Self.FK__Биомы__update_id__2EDAF651" FromRole="Биомы" ToRole="История_Обновлений" />
+          <NavigationProperty Name="Предметы" Relationship="Self.FK__Предметы__biome___57DD0BE4" FromRole="Биомы" ToRole="Предметы" />
+          <NavigationProperty Name="Растения" Relationship="Self.FK__Растения__biome___531856C7" FromRole="Биомы" ToRole="Растения" />
+          <NavigationProperty Name="События" Relationship="Self.FK__События__biome_i__41EDCAC5" FromRole="Биомы" ToRole="События" />
+          <NavigationProperty Name="Существа" Relationship="Self.FK__Существа__biome___5D95E53A" FromRole="Биомы" ToRole="Существа" />
+        </EntityType>
+        <EntityType Name="История_Обновлений">
+          <Key>
+            <PropertyRef Name="update_id" />
+          </Key>
+          <Property Name="update_id" Type="Int32" Nullable="false" />
+          <Property Name="версия" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="дата" Type="DateTime" Precision="0" />
+          <Property Name="описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Биомы" Relationship="Self.FK__Биомы__update_id__2EDAF651" FromRole="История_Обновлений" ToRole="Биомы" />
+          <NavigationProperty Name="Классы_персонажей" Relationship="Self.FK__Классы_пе__updat__29221CFB" FromRole="История_Обновлений" ToRole="Классы_персонажей" />
+          <NavigationProperty Name="Механики" Relationship="Self.FK__Механики__update__7849DB76" FromRole="История_Обновлений" ToRole="Механики" />
+          <NavigationProperty Name="Отчивки" Relationship="Self.FK__Отчивки__update___02FC7413" FromRole="История_Обновлений" ToRole="Отчивки" />
+          <NavigationProperty Name="Предметы" Relationship="Self.FK__Предметы__update__59C55456" FromRole="История_Обновлений" ToRole="Предметы" />
+          <NavigationProperty Name="Растения" Relationship="Self.FK__Растения__update__540C7B00" FromRole="История_Обновлений" ToRole="Растения" />
+          <NavigationProperty Name="Режимы_игры" Relationship="Self.FK__Режимы_иг__updat__14270015" FromRole="История_Обновлений" ToRole="Режимы_игры" />
+          <NavigationProperty Name="События" Relationship="Self.FK__События__update___44CA3770" FromRole="История_Обновлений" ToRole="События" />
+          <NavigationProperty Name="Существа" Relationship="Self.FK__Существа__update__5F7E2DAC" FromRole="История_Обновлений" ToRole="Существа" />
+          <NavigationProperty Name="Удалённое" Relationship="Self.FK__Удалённое__updat__08B54D69" FromRole="История_Обновлений" ToRole="Удалённое" />
+        </EntityType>
+        <EntityType Name="Классы_персонажей">
+          <Key>
+            <PropertyRef Name="class_id" />
+          </Key>
+          <Property Name="class_id" Type="Int32" Nullable="false" />
+          <Property Name="название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="update_id" Type="Int32" />
+          <NavigationProperty Name="История_Обновлений" Relationship="Self.FK__Классы_пе__updat__29221CFB" FromRole="Классы_персонажей" ToRole="История_Обновлений" />
+          <NavigationProperty Name="Предметы" Relationship="Self.FK__Предметы__class___58D1301D" FromRole="Классы_персонажей" ToRole="Предметы" />
+        </EntityType>
+        <EntityType Name="Механики">
+          <Key>
+            <PropertyRef Name="mechanic_id" />
+          </Key>
+          <Property Name="mechanic_id" Type="Int32" Nullable="false" />
+          <Property Name="название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="update_id" Type="Int32" />
+          <NavigationProperty Name="История_Обновлений" Relationship="Self.FK__Механики__update__7849DB76" FromRole="Механики" ToRole="История_Обновлений" />
+        </EntityType>
+        <EntityType Name="Отчивки">
+          <Key>
+            <PropertyRef Name="achievement_id" />
+          </Key>
+          <Property Name="achievement_id" Type="Int32" Nullable="false" />
+          <Property Name="название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="условия_выполнения" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="update_id" Type="Int32" />
+          <NavigationProperty Name="История_Обновлений" Relationship="Self.FK__Отчивки__update___02FC7413" FromRole="Отчивки" ToRole="История_Обновлений" />
+        </EntityType>
+        <EntityType Name="Предметы">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="Int32" Nullable="false" />
+          <Property Name="название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="тип" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="event_id" Type="Int32" />
+          <Property Name="biome_id" Type="Int32" />
+          <Property Name="class_id" Type="Int32" />
+          <Property Name="update_id" Type="Int32" />
+          <Property Name="removed_id" Type="Int32" />
+          <Property Name="plant_id" Type="Int32" />
+          <NavigationProperty Name="Биомы" Relationship="Self.FK__Предметы__biome___57DD0BE4" FromRole="Предметы" ToRole="Биомы" />
+          <NavigationProperty Name="История_Обновлений" Relationship="Self.FK__Предметы__update__59C55456" FromRole="Предметы" ToRole="История_Обновлений" />
+          <NavigationProperty Name="Классы_персонажей" Relationship="Self.FK__Предметы__class___58D1301D" FromRole="Предметы" ToRole="Классы_персонажей" />
+          <NavigationProperty Name="События" Relationship="Self.FK__Предметы__event___56E8E7AB" FromRole="Предметы" ToRole="События" />
+          <NavigationProperty Name="Удалённое" Relationship="Self.FK__Предметы__remove__5AB9788F" FromRole="Предметы" ToRole="Удалённое" />
+          <NavigationProperty Name="Существа" Relationship="Self.FK__Существа__item_i__5E8A0973" FromRole="Предметы" ToRole="Существа" />
+        </EntityType>
+        <EntityType Name="Растения">
+          <Key>
+            <PropertyRef Name="plant_id" />
+          </Key>
+          <Property Name="plant_id" Type="Int32" Nullable="false" />
+          <Property Name="название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="тип" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="biome_id" Type="Int32" />
+          <Property Name="update_id" Type="Int32" />
+          <NavigationProperty Name="Биомы" Relationship="Self.FK__Растения__biome___531856C7" FromRole="Растения" ToRole="Биомы" />
+          <NavigationProperty Name="История_Обновлений" Relationship="Self.FK__Растения__update__540C7B00" FromRole="Растения" ToRole="История_Обновлений" />
+        </EntityType>
+        <EntityType Name="Режимы_игры">
+          <Key>
+            <PropertyRef Name="mode_id" />
+          </Key>
+          <Property Name="mode_id" Type="Int32" Nullable="false" />
+          <Property Name="название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="update_id" Type="Int32" />
+          <NavigationProperty Name="История_Обновлений" Relationship="Self.FK__Режимы_иг__updat__14270015" FromRole="Режимы_игры" ToRole="История_Обновлений" />
+          <NavigationProperty Name="События" Relationship="Self.FK__События__mode_id__43D61337" FromRole="Режимы_игры" ToRole="События" />
+        </EntityType>
+        <EntityType Name="События">
+          <Key>
+            <PropertyRef Name="event_id" />
+          </Key>
+          <Property Name="event_id" Type="Int32" Nullable="false" />
+          <Property Name="название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="biome_id" Type="Int32" />
+          <Property Name="removed_id" Type="Int32" />
+          <Property Name="mode_id" Type="Int32" />
+          <Property Name="update_id" Type="Int32" />
+          <NavigationProperty Name="Биомы" Relationship="Self.FK__События__biome_i__41EDCAC5" FromRole="События" ToRole="Биомы" />
+          <NavigationProperty Name="История_Обновлений" Relationship="Self.FK__События__update___44CA3770" FromRole="События" ToRole="История_Обновлений" />
+          <NavigationProperty Name="Предметы" Relationship="Self.FK__Предметы__event___56E8E7AB" FromRole="События" ToRole="Предметы" />
+          <NavigationProperty Name="Режимы_игры" Relationship="Self.FK__События__mode_id__43D61337" FromRole="События" ToRole="Режимы_игры" />
+          <NavigationProperty Name="Удалённое" Relationship="Self.FK__События__removed__42E1EEFE" FromRole="События" ToRole="Удалённое" />
+        </EntityType>
+        <EntityType Name="Существа">
+          <Key>
+            <PropertyRef Name="creature_id" />
+          </Key>
+          <Property Name="creature_id" Type="Int32" Nullable="false" />
+          <Property Name="имя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="тип" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="biome_id" Type="Int32" />
+          <Property Name="item_id" Type="Int32" />
+          <Property Name="update_id" Type="Int32" />
+          <Property Name="removed_id" Type="Int32" />
+          <Property Name="mode_id" Type="Int32" />
+          <NavigationProperty Name="Биомы" Relationship="Self.FK__Существа__biome___5D95E53A" FromRole="Существа" ToRole="Биомы" />
+          <NavigationProperty Name="История_Обновлений" Relationship="Self.FK__Существа__update__5F7E2DAC" FromRole="Существа" ToRole="История_Обновлений" />
+          <NavigationProperty Name="Предметы" Relationship="Self.FK__Существа__item_i__5E8A0973" FromRole="Существа" ToRole="Предметы" />
+          <NavigationProperty Name="Удалённое" Relationship="Self.FK__Существа__remove__607251E5" FromRole="Существа" ToRole="Удалённое" />
+        </EntityType>
+        <EntityType Name="Удалённое">
+          <Key>
+            <PropertyRef Name="removed_id" />
+          </Key>
+          <Property Name="removed_id" Type="Int32" Nullable="false" />
+          <Property Name="название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="update_id" Type="Int32" />
+          <NavigationProperty Name="История_Обновлений" Relationship="Self.FK__Удалённое__updat__08B54D69" FromRole="Удалённое" ToRole="История_Обновлений" />
+          <NavigationProperty Name="Предметы" Relationship="Self.FK__Предметы__remove__5AB9788F" FromRole="Удалённое" ToRole="Предметы" />
+          <NavigationProperty Name="События" Relationship="Self.FK__События__removed__42E1EEFE" FromRole="Удалённое" ToRole="События" />
+          <NavigationProperty Name="Существа" Relationship="Self.FK__Существа__remove__607251E5" FromRole="Удалённое" ToRole="Существа" />
+        </EntityType>
+        <Association Name="FK__Биомы__update_id__2EDAF651">
+          <End Role="История_Обновлений" Type="Self.История_Обновлений" Multiplicity="0..1" />
+          <End Role="Биомы" Type="Self.Биомы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История_Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Биомы">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Предметы__biome___57DD0BE4">
+          <End Role="Биомы" Type="Self.Биомы" Multiplicity="0..1" />
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Биомы">
+              <PropertyRef Name="biome_id" />
+            </Principal>
+            <Dependent Role="Предметы">
+              <PropertyRef Name="biome_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Растения__biome___531856C7">
+          <End Role="Биомы" Type="Self.Биомы" Multiplicity="0..1" />
+          <End Role="Растения" Type="Self.Растения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Биомы">
+              <PropertyRef Name="biome_id" />
+            </Principal>
+            <Dependent Role="Растения">
+              <PropertyRef Name="biome_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__События__biome_i__41EDCAC5">
+          <End Role="Биомы" Type="Self.Биомы" Multiplicity="0..1" />
+          <End Role="События" Type="Self.События" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Биомы">
+              <PropertyRef Name="biome_id" />
+            </Principal>
+            <Dependent Role="События">
+              <PropertyRef Name="biome_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Существа__biome___5D95E53A">
+          <End Role="Биомы" Type="Self.Биомы" Multiplicity="0..1" />
+          <End Role="Существа" Type="Self.Существа" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Биомы">
+              <PropertyRef Name="biome_id" />
+            </Principal>
+            <Dependent Role="Существа">
+              <PropertyRef Name="biome_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Классы_пе__updat__29221CFB">
+          <End Role="История_Обновлений" Type="Self.История_Обновлений" Multiplicity="0..1" />
+          <End Role="Классы_персонажей" Type="Self.Классы_персонажей" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История_Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Классы_персонажей">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Механики__update__7849DB76">
+          <End Role="История_Обновлений" Type="Self.История_Обновлений" Multiplicity="0..1" />
+          <End Role="Механики" Type="Self.Механики" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История_Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Механики">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Отчивки__update___02FC7413">
+          <End Role="История_Обновлений" Type="Self.История_Обновлений" Multiplicity="0..1" />
+          <End Role="Отчивки" Type="Self.Отчивки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История_Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Отчивки">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Предметы__update__59C55456">
+          <End Role="История_Обновлений" Type="Self.История_Обновлений" Multiplicity="0..1" />
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История_Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Предметы">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Растения__update__540C7B00">
+          <End Role="История_Обновлений" Type="Self.История_Обновлений" Multiplicity="0..1" />
+          <End Role="Растения" Type="Self.Растения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История_Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Растения">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Режимы_иг__updat__14270015">
+          <End Role="История_Обновлений" Type="Self.История_Обновлений" Multiplicity="0..1" />
+          <End Role="Режимы_игры" Type="Self.Режимы_игры" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История_Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Режимы_игры">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__События__update___44CA3770">
+          <End Role="История_Обновлений" Type="Self.История_Обновлений" Multiplicity="0..1" />
+          <End Role="События" Type="Self.События" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История_Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="События">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Существа__update__5F7E2DAC">
+          <End Role="История_Обновлений" Type="Self.История_Обновлений" Multiplicity="0..1" />
+          <End Role="Существа" Type="Self.Существа" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История_Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Существа">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Удалённое__updat__08B54D69">
+          <End Role="История_Обновлений" Type="Self.История_Обновлений" Multiplicity="0..1" />
+          <End Role="Удалённое" Type="Self.Удалённое" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="История_Обновлений">
+              <PropertyRef Name="update_id" />
+            </Principal>
+            <Dependent Role="Удалённое">
+              <PropertyRef Name="update_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Предметы__class___58D1301D">
+          <End Role="Классы_персонажей" Type="Self.Классы_персонажей" Multiplicity="0..1" />
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Классы_персонажей">
+              <PropertyRef Name="class_id" />
+            </Principal>
+            <Dependent Role="Предметы">
+              <PropertyRef Name="class_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Предметы__event___56E8E7AB">
+          <End Role="События" Type="Self.События" Multiplicity="0..1" />
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="События">
+              <PropertyRef Name="event_id" />
+            </Principal>
+            <Dependent Role="Предметы">
+              <PropertyRef Name="event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Предметы__remove__5AB9788F">
+          <End Role="Удалённое" Type="Self.Удалённое" Multiplicity="0..1" />
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Удалённое">
+              <PropertyRef Name="removed_id" />
+            </Principal>
+            <Dependent Role="Предметы">
+              <PropertyRef Name="removed_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Существа__item_i__5E8A0973">
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="0..1" />
+          <End Role="Существа" Type="Self.Существа" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предметы">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="Существа">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__События__mode_id__43D61337">
+          <End Role="Режимы_игры" Type="Self.Режимы_игры" Multiplicity="0..1" />
+          <End Role="События" Type="Self.События" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Режимы_игры">
+              <PropertyRef Name="mode_id" />
+            </Principal>
+            <Dependent Role="События">
+              <PropertyRef Name="mode_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__События__removed__42E1EEFE">
+          <End Role="Удалённое" Type="Self.Удалённое" Multiplicity="0..1" />
+          <End Role="События" Type="Self.События" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Удалённое">
+              <PropertyRef Name="removed_id" />
+            </Principal>
+            <Dependent Role="События">
+              <PropertyRef Name="removed_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Существа__remove__607251E5">
+          <End Role="Удалённое" Type="Self.Удалённое" Multiplicity="0..1" />
+          <End Role="Существа" Type="Self.Существа" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Удалённое">
+              <PropertyRef Name="removed_id" />
+            </Principal>
+            <Dependent Role="Существа">
+              <PropertyRef Name="removed_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Биомы" EntityType="Self.Биомы" />
+          <EntitySet Name="История_Обновлений" EntityType="Self.История_Обновлений" />
+          <EntitySet Name="Классы_персонажей" EntityType="Self.Классы_персонажей" />
+          <EntitySet Name="Механики" EntityType="Self.Механики" />
+          <EntitySet Name="Отчивки" EntityType="Self.Отчивки" />
+          <EntitySet Name="Предметы" EntityType="Self.Предметы" />
+          <EntitySet Name="Растения" EntityType="Self.Растения" />
+          <EntitySet Name="Режимы_игры" EntityType="Self.Режимы_игры" />
+          <EntitySet Name="События" EntityType="Self.События" />
+          <EntitySet Name="Существа" EntityType="Self.Существа" />
+          <EntitySet Name="Удалённое" EntityType="Self.Удалённое" />
+          <AssociationSet Name="FK__Биомы__update_id__2EDAF651" Association="Self.FK__Биомы__update_id__2EDAF651">
+            <End Role="История_Обновлений" EntitySet="История_Обновлений" />
+            <End Role="Биомы" EntitySet="Биомы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Предметы__biome___57DD0BE4" Association="Self.FK__Предметы__biome___57DD0BE4">
+            <End Role="Биомы" EntitySet="Биомы" />
+            <End Role="Предметы" EntitySet="Предметы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Растения__biome___531856C7" Association="Self.FK__Растения__biome___531856C7">
+            <End Role="Биомы" EntitySet="Биомы" />
+            <End Role="Растения" EntitySet="Растения" />
+          </AssociationSet>
+          <AssociationSet Name="FK__События__biome_i__41EDCAC5" Association="Self.FK__События__biome_i__41EDCAC5">
+            <End Role="Биомы" EntitySet="Биомы" />
+            <End Role="События" EntitySet="События" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Существа__biome___5D95E53A" Association="Self.FK__Существа__biome___5D95E53A">
+            <End Role="Биомы" EntitySet="Биомы" />
+            <End Role="Существа" EntitySet="Существа" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Классы_пе__updat__29221CFB" Association="Self.FK__Классы_пе__updat__29221CFB">
+            <End Role="История_Обновлений" EntitySet="История_Обновлений" />
+            <End Role="Классы_персонажей" EntitySet="Классы_персонажей" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Механики__update__7849DB76" Association="Self.FK__Механики__update__7849DB76">
+            <End Role="История_Обновлений" EntitySet="История_Обновлений" />
+            <End Role="Механики" EntitySet="Механики" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Отчивки__update___02FC7413" Association="Self.FK__Отчивки__update___02FC7413">
+            <End Role="История_Обновлений" EntitySet="История_Обновлений" />
+            <End Role="Отчивки" EntitySet="Отчивки" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Предметы__update__59C55456" Association="Self.FK__Предметы__update__59C55456">
+            <End Role="История_Обновлений" EntitySet="История_Обновлений" />
+            <End Role="Предметы" EntitySet="Предметы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Растения__update__540C7B00" Association="Self.FK__Растения__update__540C7B00">
+            <End Role="История_Обновлений" EntitySet="История_Обновлений" />
+            <End Role="Растения" EntitySet="Растения" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Режимы_иг__updat__14270015" Association="Self.FK__Режимы_иг__updat__14270015">
+            <End Role="История_Обновлений" EntitySet="История_Обновлений" />
+            <End Role="Режимы_игры" EntitySet="Режимы_игры" />
+          </AssociationSet>
+          <AssociationSet Name="FK__События__update___44CA3770" Association="Self.FK__События__update___44CA3770">
+            <End Role="История_Обновлений" EntitySet="История_Обновлений" />
+            <End Role="События" EntitySet="События" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Существа__update__5F7E2DAC" Association="Self.FK__Существа__update__5F7E2DAC">
+            <End Role="История_Обновлений" EntitySet="История_Обновлений" />
+            <End Role="Существа" EntitySet="Существа" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Удалённое__updat__08B54D69" Association="Self.FK__Удалённое__updat__08B54D69">
+            <End Role="История_Обновлений" EntitySet="История_Обновлений" />
+            <End Role="Удалённое" EntitySet="Удалённое" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Предметы__class___58D1301D" Association="Self.FK__Предметы__class___58D1301D">
+            <End Role="Классы_персонажей" EntitySet="Классы_персонажей" />
+            <End Role="Предметы" EntitySet="Предметы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Предметы__event___56E8E7AB" Association="Self.FK__Предметы__event___56E8E7AB">
+            <End Role="События" EntitySet="События" />
+            <End Role="Предметы" EntitySet="Предметы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Предметы__remove__5AB9788F" Association="Self.FK__Предметы__remove__5AB9788F">
+            <End Role="Удалённое" EntitySet="Удалённое" />
+            <End Role="Предметы" EntitySet="Предметы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Существа__item_i__5E8A0973" Association="Self.FK__Существа__item_i__5E8A0973">
+            <End Role="Предметы" EntitySet="Предметы" />
+            <End Role="Существа" EntitySet="Существа" />
+          </AssociationSet>
+          <AssociationSet Name="FK__События__mode_id__43D61337" Association="Self.FK__События__mode_id__43D61337">
+            <End Role="Режимы_игры" EntitySet="Режимы_игры" />
+            <End Role="События" EntitySet="События" />
+          </AssociationSet>
+          <AssociationSet Name="FK__События__removed__42E1EEFE" Association="Self.FK__События__removed__42E1EEFE">
+            <End Role="Удалённое" EntitySet="Удалённое" />
+            <End Role="События" EntitySet="События" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Существа__remove__607251E5" Association="Self.FK__Существа__remove__607251E5">
+            <End Role="Удалённое" EntitySet="Удалённое" />
+            <End Role="Существа" EntitySet="Существа" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TModelContainer" CdmEntityContainer="TEntities">
+          <EntitySetMapping Name="Биомы">
+            <EntityTypeMapping TypeName="TModel.Биомы">
+              <MappingFragment StoreEntitySet="Биомы">
+                <ScalarProperty Name="biome_id" ColumnName="biome_id" />
+                <ScalarProperty Name="название" ColumnName="название" />
+                <ScalarProperty Name="описание" ColumnName="описание" />
+                <ScalarProperty Name="update_id" ColumnName="update_id" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="История_Обновлений">
+            <EntityTypeMapping TypeName="TModel.История_Обновлений">
+              <MappingFragment StoreEntitySet="История Обновлений">
+                <ScalarProperty Name="update_id" ColumnName="update_id" />
+                <ScalarProperty Name="версия" ColumnName="версия" />
+                <ScalarProperty Name="дата" ColumnName="дата" />
+                <ScalarProperty Name="описание" ColumnName="описание" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Классы_персонажей">
+            <EntityTypeMapping TypeName="TModel.Классы_персонажей">
+              <MappingFragment StoreEntitySet="Классы персонажей">
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
+                <ScalarProperty Name="название" ColumnName="название" />
+                <ScalarProperty Name="описание" ColumnName="описание" />
+                <ScalarProperty Name="update_id" ColumnName="update_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Механики">
+            <EntityTypeMapping TypeName="TModel.Механики">
+              <MappingFragment StoreEntitySet="Механики">
+                <ScalarProperty Name="mechanic_id" ColumnName="mechanic_id" />
+                <ScalarProperty Name="название" ColumnName="название" />
+                <ScalarProperty Name="описание" ColumnName="описание" />
+                <ScalarProperty Name="update_id" ColumnName="update_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Отчивки">
+            <EntityTypeMapping TypeName="TModel.Отчивки">
+              <MappingFragment StoreEntitySet="Отчивки">
+                <ScalarProperty Name="achievement_id" ColumnName="achievement_id" />
+                <ScalarProperty Name="название" ColumnName="название" />
+                <ScalarProperty Name="условия_выполнения" ColumnName="условия_выполнения" />
+                <ScalarProperty Name="update_id" ColumnName="update_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Предметы">
+            <EntityTypeMapping TypeName="TModel.Предметы">
+              <MappingFragment StoreEntitySet="Предметы">
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="название" ColumnName="название" />
+                <ScalarProperty Name="тип" ColumnName="тип" />
+                <ScalarProperty Name="описание" ColumnName="описание" />
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+                <ScalarProperty Name="biome_id" ColumnName="biome_id" />
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
+                <ScalarProperty Name="update_id" ColumnName="update_id" />
+                <ScalarProperty Name="removed_id" ColumnName="removed_id" />
+                <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Растения">
+            <EntityTypeMapping TypeName="TModel.Растения">
+              <MappingFragment StoreEntitySet="Растения">
+                <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+                <ScalarProperty Name="название" ColumnName="название" />
+                <ScalarProperty Name="тип" ColumnName="тип" />
+                <ScalarProperty Name="описание" ColumnName="описание" />
+                <ScalarProperty Name="biome_id" ColumnName="biome_id" />
+                <ScalarProperty Name="update_id" ColumnName="update_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Режимы_игры">
+            <EntityTypeMapping TypeName="TModel.Режимы_игры">
+              <MappingFragment StoreEntitySet="Режимы игры">
+                <ScalarProperty Name="mode_id" ColumnName="mode_id" />
+                <ScalarProperty Name="название" ColumnName="название" />
+                <ScalarProperty Name="описание" ColumnName="описание" />
+                <ScalarProperty Name="update_id" ColumnName="update_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="События">
+            <EntityTypeMapping TypeName="TModel.События">
+              <MappingFragment StoreEntitySet="События">
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+                <ScalarProperty Name="название" ColumnName="название" />
+                <ScalarProperty Name="описание" ColumnName="описание" />
+                <ScalarProperty Name="biome_id" ColumnName="biome_id" />
+                <ScalarProperty Name="removed_id" ColumnName="removed_id" />
+                <ScalarProperty Name="mode_id" ColumnName="mode_id" />
+                <ScalarProperty Name="update_id" ColumnName="update_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Существа">
+            <EntityTypeMapping TypeName="TModel.Существа">
+              <MappingFragment StoreEntitySet="Существа">
+                <ScalarProperty Name="creature_id" ColumnName="creature_id" />
+                <ScalarProperty Name="имя" ColumnName="имя" />
+                <ScalarProperty Name="тип" ColumnName="тип" />
+                <ScalarProperty Name="описание" ColumnName="описание" />
+                <ScalarProperty Name="biome_id" ColumnName="biome_id" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="update_id" ColumnName="update_id" />
+                <ScalarProperty Name="removed_id" ColumnName="removed_id" />
+                <ScalarProperty Name="mode_id" ColumnName="mode_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Удалённое">
+            <EntityTypeMapping TypeName="TModel.Удалённое">
+              <MappingFragment StoreEntitySet="Удалённое">
+                <ScalarProperty Name="removed_id" ColumnName="removed_id" />
+                <ScalarProperty Name="название" ColumnName="название" />
+                <ScalarProperty Name="описание" ColumnName="описание" />
+                <ScalarProperty Name="update_id" ColumnName="update_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
