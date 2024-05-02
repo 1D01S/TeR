@@ -26,6 +26,8 @@ namespace TeR
         {
             InitializeComponent();
             db = new TEntities();
+            this.WindowState = WindowState.Maximized;
+            this.WindowStyle = WindowStyle.None;
         }
 
         private void Page1Button_Click(object sender, RoutedEventArgs e)
