@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,17 +18,93 @@ namespace TeR
 {
     public partial class mode : Page
     {
+        private List<Режимы_игры> originalModes;
+        private List<Режимы_игры> gameModes;
         private readonly TEntities db;
 
-        public mode(TEntities db)
+        public mode(TEntities entities)
         {
             InitializeComponent();
 
-            this.db = db;
+            db = entities;
+            originalModes = db.Режимы_игры.ToList();
+            gameModes = new List<Режимы_игры>(originalModes);
+            dataGrid.ItemsSource = gameModes;
+        }
 
-            // Получение данных из таблицы обновлений и отображение их в DataGrid
-            var mode = db.Режимы_игры.ToList();
-            dataGridUpdates.ItemsSource = mode;
+        private void DeleteRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid.SelectedItem != null)
+            {
+                Режимы_игры selectedMode = dataGrid.SelectedItem as Режимы_игры;
+                gameModes.Remove(selectedMode);
+                db.Режимы_игры.Remove(selectedMode);
+
+                db.SaveChanges();
+                dataGrid.Items.Refresh();
+            }
+        }
+
+        private void AddNewRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            Режимы_игры newGameMode = new Режимы_игры();
+            gameModes.Add(newGameMode);
+            dataGrid.Items.Refresh();
+            dataGrid.ScrollIntoView(newGameMode);
+        }
+
+        private bool flagfix = true;
+
+        public void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            Режимы_игры p = e.Row.Item as Режимы_игры;
+            if (flagfix)
+            {
+                int numRow = e.Row.GetIndex();
+                Random rnd = new Random();
+
+                gameModes.RemoveAt(numRow);
+                gameModes.Insert(numRow, p);
+
+                flagfix = false;
+                dataGrid.CancelEdit();
+                dataGrid.CancelEdit();
+                flagfix = true;
+                dataGrid.Items.Refresh();
+            }
+        }
+
+        public class GameMode
+        {
+            public int id { get; set; }
+            public string name { get; set; }
+            public string description { get; set; }
+            public bool isFeatured { get; set; }
+        }
+
+        private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                foreach (var item in gameModes)
+                {
+                    if (db.Entry(item).State == EntityState.Detached)
+                    {
+                        db.Режимы_игры.Add(item);
+                    }
+                    else
+                    {
+                        db.Entry(item).State = EntityState.Modified;
+                    }
+                }
+
+                db.SaveChanges();
+                MessageBox.Show("Изменения сохранены успешно!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при сохранении изменений: " + ex.Message);
+            }
         }
     }
 }

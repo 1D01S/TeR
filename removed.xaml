@@ -9,6 +9,26 @@
       Title="removed">
 
     <Grid>
-        <DataGrid x:Name="dataGridUpdates" AutoGenerateColumns="True" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button Content="Удалить выбранную стр." Click="DeleteRowButton_Click" Width="150" Margin="10,0,0,0"/>
+            <Button Content="Добавить новую строку" Click="AddNewRowButton_Click" Width="150" Margin="10,0,0,0"/>
+            <Button Content="Сохранить" Click="SaveChangesButton_Click" Width="100" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" CellEditEnding="dataGrid_CellEditEnding">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding removed_id, UpdateSourceTrigger=PropertyChanged}" Header="ID"/>
+                    <DataGridTextColumn Binding="{Binding название, UpdateSourceTrigger=PropertyChanged}" Header="Название"/>
+                    <DataGridTextColumn Binding="{Binding описание, UpdateSourceTrigger=PropertyChanged}" Header="Описание"/>
+                    <DataGridTextColumn Binding="{Binding update_id, UpdateSourceTrigger=PropertyChanged}" Header="ID В котором было удаление"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
     </Grid>
 </Page>

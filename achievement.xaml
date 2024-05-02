@@ -25,7 +25,7 @@
                     <DataGridTextColumn Binding="{Binding achievement_id, UpdateSourceTrigger=PropertyChanged}" Header="ID"/>
                     <DataGridTextColumn Binding="{Binding название, UpdateSourceTrigger=PropertyChanged}" Header="Название"/>
                     <DataGridTextColumn Binding="{Binding условия_выполнения, UpdateSourceTrigger=PropertyChanged}" Header="Условие выполнения"/>
-                    <DataGridTextColumn Binding="{Binding update_id, UpdateSourceTrigger=PropertyChanged}" Header="id обновления в котором появилась отчивка"/>
+                    <DataGridTextColumn Binding="{Binding update_id, UpdateSourceTrigger=PropertyChanged}" Header="ID Обновления в котором появилась отчивка"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

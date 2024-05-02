@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,17 +18,93 @@ namespace TeR
 {
     public partial class plant : Page
     {
+        private List<Растения> originalPlants;
+        private List<Растения> plants;
         private readonly TEntities db;
 
-        public plant(TEntities db)
+        public plant(TEntities entities)
         {
             InitializeComponent();
 
-            this.db = db;
+            db = entities;
+            originalPlants = db.Растения.ToList();
+            plants = new List<Растения>(originalPlants);
+            dataGrid.ItemsSource = plants;
+        }
 
-            // Получение данных из таблицы обновлений и отображение их в DataGrid
-            var plant = db.Растения.ToList();
-            dataGridUpdates.ItemsSource = plant;
+        private void DeleteRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid.SelectedItem != null)
+            {
+                Растения selectedPlant = dataGrid.SelectedItem as Растения;
+                plants.Remove(selectedPlant);
+                db.Растения.Remove(selectedPlant);
+
+                db.SaveChanges();
+                dataGrid.Items.Refresh();
+            }
+        }
+
+        private void AddNewRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            Растения newPlant = new Растения();
+            plants.Add(newPlant);
+            dataGrid.Items.Refresh();
+            dataGrid.ScrollIntoView(newPlant);
+        }
+
+        private bool flagfix = true;
+
+        public void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            Растения p = e.Row.Item as Растения;
+            if (flagfix)
+            {
+                int numRow = e.Row.GetIndex();
+                Random rnd = new Random();
+
+                plants.RemoveAt(numRow);
+                plants.Insert(numRow, p);
+
+                flagfix = false;
+                dataGrid.CancelEdit();
+                dataGrid.CancelEdit();
+                flagfix = true;
+                dataGrid.Items.Refresh();
+            }
+        }
+
+        public class Plant
+        {
+            public int id { get; set; }
+            public string name { get; set; }
+            public string description { get; set; }
+            public DateTime plantingDate { get; set; }
+        }
+
+        private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                foreach (var item in plants)
+                {
+                    if (db.Entry(item).State == EntityState.Detached)
+                    {
+                        db.Растения.Add(item);
+                    }
+                    else
+                    {
+                        db.Entry(item).State = EntityState.Modified;
+                    }
+                }
+
+                db.SaveChanges();
+                MessageBox.Show("Изменения сохранены успешно!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при сохранении изменений: " + ex.Message);
+            }
         }
     }
 }

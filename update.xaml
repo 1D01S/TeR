@@ -8,19 +8,27 @@
       d:DesignHeight="450" d:DesignWidth="800" Background="White"
       Title="update">
 
-    <StackPanel>
-        <Grid>
-            <Button Content="Сохранить" Click="SaveChangesButton_Click" Width="110" HorizontalAlignment="Center" Margin="0,1,0,595"/>
-            <ScrollViewer VerticalScrollBarVisibility="Disabled" Margin="0,26,10,-351">
-                <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" CellEditEnding="dataGrid_CellEditEnding" Height="946" Width="1352" >
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding update_id, UpdateSourceTrigger=PropertyChanged}" Header="id"/>
-                        <DataGridTextColumn Binding="{Binding версия, UpdateSourceTrigger=PropertyChanged}" Header="Версия"/>
-                        <DataGridTextColumn Binding="{Binding дата, UpdateSourceTrigger=PropertyChanged}" Header="Дата"/>
-                        <DataGridTextColumn Binding="{Binding описание, UpdateSourceTrigger=PropertyChanged}" Header="Описание"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </ScrollViewer>
-        </Grid>
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button Content="Удалить выбранную стр." Click="DeleteRowButton_Click" Width="150" Margin="10,0,0,0"/>
+            <Button Content="Добавить новую строку" Click="AddNewRowButton_Click" Width="150" Margin="10,0,0,0"/>
+            <Button Content="Сохранить" Click="SaveChangesButton_Click" Width="100" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" CellEditEnding="dataGrid_CellEditEnding">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding update_id, UpdateSourceTrigger=PropertyChanged}" Header="ID"/>
+                    <DataGridTextColumn Binding="{Binding версия, UpdateSourceTrigger=PropertyChanged}" Header="Версия"/>
+                    <DataGridTextColumn Binding="{Binding дата, UpdateSourceTrigger=PropertyChanged}" Header="Дата"/>
+                    <DataGridTextColumn Binding="{Binding описание, UpdateSourceTrigger=PropertyChanged}" Header="Описание"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+    </Grid>
 </Page>

@@ -14,11 +14,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TeR;
+using static TeR.update;
 
 namespace TeR
 {
     public partial class update : Page
     {
+        private List<История_Обновлений> originalUpdate;
         private List<История_Обновлений> updates;
         private readonly TEntities db;
 
@@ -27,8 +29,30 @@ namespace TeR
             InitializeComponent();
 
             db = entities;
-            updates = db.История_Обновлений.ToList();
+            originalUpdate = db.История_Обновлений.ToList();
+            updates = new List<История_Обновлений>(originalUpdate);
             dataGrid.ItemsSource = updates;
+        }
+
+        private void DeleteRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid.SelectedItem != null)
+            {
+                История_Обновлений selectedAchievement = dataGrid.SelectedItem as История_Обновлений; // Correct variable name
+                updates.Remove(selectedAchievement); // Remove the selected item from updates
+                db.История_Обновлений.Remove(selectedAchievement); // Remove the selected item from the database
+
+                db.SaveChanges();
+                dataGrid.Items.Refresh();
+            }
+        }
+
+        private void AddNewRowButton_Click(object sender, RoutedEventArgs e)
+        {
+            История_Обновлений newUpdate = new История_Обновлений(); // Change the type to История_Обновлений
+            updates.Add(newUpdate);
+            dataGrid.Items.Refresh();
+            dataGrid.ScrollIntoView(newUpdate);
         }
 
         private bool flagfix = true;
