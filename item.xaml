@@ -9,6 +9,32 @@
       Title="item">
 
     <Grid>
-        <DataGrid x:Name="dataGridUpdates" AutoGenerateColumns="True" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button Content="Удалить выбранную стр." Click="DeleteRowButton_Click" Width="150" Margin="10,0,0,0"/>
+            <Button Content="Добавить новую строку" Click="AddNewRowButton_Click" Width="150" Margin="10,0,0,0"/>
+            <Button Content="Сохранить" Click="SaveChangesButton_Click" Width="100" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" CellEditEnding="dataGrid_CellEditEnding">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding item_id, UpdateSourceTrigger=PropertyChanged}" Header="ID"/>
+                    <DataGridTextColumn Binding="{Binding название, UpdateSourceTrigger=PropertyChanged}" Header="Название"/>
+                    <DataGridTextColumn Binding="{Binding тип, UpdateSourceTrigger=PropertyChanged}" Header="Тип"/>
+                    <DataGridTextColumn Binding="{Binding описание, UpdateSourceTrigger=PropertyChanged}" Header="Описание"/>
+                    <DataGridTextColumn Binding="{Binding event_id, UpdateSourceTrigger=PropertyChanged}" Header="ID События в котором можно получить предмет"/>
+                    <DataGridTextColumn Binding="{Binding biome_id, UpdateSourceTrigger=PropertyChanged}" Header="ID Биома в котором можно найти предмет"/>
+                    <DataGridTextColumn Binding="{Binding class_id, UpdateSourceTrigger=PropertyChanged}" Header="ID Класса персонажа которому пренадлежит предмет"/>
+                    <DataGridTextColumn Binding="{Binding update_id, UpdateSourceTrigger=PropertyChanged}" Header="ID Обновления в котором появился предмет"/>
+                    <DataGridTextColumn Binding="{Binding removed_id, UpdateSourceTrigger=PropertyChanged}" Header="ID Удалённого предмета"/>
+                    <DataGridTextColumn Binding="{Binding plant_id, UpdateSourceTrigger=PropertyChanged}" Header="ID Растения (Если предмет являеться растеием)"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
     </Grid>
 </Page>
