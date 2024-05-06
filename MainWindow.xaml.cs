@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Navigation;
+    using System.Windows.Shapes;
+    using TeR;
 
 namespace TeR
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private readonly TEntities db;
@@ -25,67 +23,32 @@ namespace TeR
         public MainWindow()
         {
             InitializeComponent();
-            db = new TEntities();
-            this.WindowState = WindowState.Maximized;
-            this.WindowStyle = WindowStyle.None;
         }
-
-        private void Page1Button_Click(object sender, RoutedEventArgs e)
+        
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new update(db));
-        }
+            string username = "a";
+            string password = "p";
 
-        private void Page2Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new removed(db));
-        }
+            if (usernameTextBox.Text == username && passwordBox.Password == password)
+            {
+                resultTextBlock.Text = "Вход выполнен успешно! 🎉";
 
-        private void ItemsButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new item(db));
-        }
+                // Закрываем текущее окно
+                
 
-        private void PlantsButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new plant(db));
-        }
+                // Открываем окно MENU
+                MENU menu = new MENU();
+                Dispatcher.Invoke(() => MainFrame.Navigate(menu));
 
-        private void CreaturesButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new creature(db));
-        }
+                // Навигируем к первой странице в MENU
+                menu.Dispatcher.Invoke(() => menu.MainFrame.Navigate(new update(new TEntities())));
+            }
+            else
+            {
+                resultTextBlock.Text = "Ошибка входа. Пожалуйста, проверьте имя пользователя и пароль. 😕";
+            }
 
-        private void BiomesButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new biome(db));
         }
-
-        private void EventsButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new _event(db));
-        }
-
-        private void GameModesButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new mode(db));
-        }
-
-        private void MechanicsButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new mechanic(db));
-        }
-
-        private void CharacterClassesButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new _class(db));
-        }
-
-        private void AchievementsButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.NavigationService.Navigate(new achievement(db));
-        }
-
     }
-
 }
-

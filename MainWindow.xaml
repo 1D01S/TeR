@@ -6,31 +6,21 @@
         xmlns:local="clr-namespace:TeR"
         mc:Ignorable="d"
         Title="T" Height="450" Width="800">
-    <Window.Background>
-        <ImageBrush ImageSource="/7bcxkdqxdjt31.jpg"/>
-    </Window.Background>
+    
+    
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
+        <Grid.Background>
+            <ImageBrush ImageSource="/7bcxkdqxdjt31.jpg"/>
+        </Grid.Background>
         
-        
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-    <Button Content="История Обновлений" Click="Page1Button_Click" Margin="5"/>
-    <Button Content="Удалённое" Click="Page2Button_Click" Margin="5"/>
-    <Button Content="Предметы" Click="ItemsButton_Click" Margin="5"/>
-    <Button Content="Растения" Click="PlantsButton_Click" Margin="5"/>
-    <Button Content="Существа" Click="CreaturesButton_Click" Margin="5"/>
-    <Button Content="Биомы" Click="BiomesButton_Click" Margin="5"/>
-    <Button Content="События" Click="EventsButton_Click" Margin="5"/>
-    <Button Content="Режимы игры" Click="GameModesButton_Click" Margin="5"/>
-    <Button Content="Механики" Click="MechanicsButton_Click" Margin="5"/>
-    <Button Content="Классы персонажей" Click="CharacterClassesButton_Click" Margin="5"/>
-     <Button Content="Достижения" Click="AchievementsButton_Click" Margin="5"/>
-</StackPanel>
-
-        <Frame Name="MainFrame" Grid.Row="1"/>
+        <StackPanel Margin="106,104,106,104">
+            <TextBlock Text="Имя пользователя:" Margin="5" Width="262"/>
+            <TextBox x:Name="usernameTextBox" Margin="5" Width="262"/>
+            <TextBlock Text="Пароль:" Margin="5" Width="262"/>
+            <PasswordBox x:Name="passwordBox" Margin="5" Width="262"/>
+            <TextBlock x:Name="resultTextBlock" Margin="5" Width="262"/>
+            <Button Content="Войти" Click="LoginButton_Click" Height="21" Margin="5" Width="262"/>
+        </StackPanel>
+        <Frame x:Name="MainFrame" />
     </Grid>
 </Window>

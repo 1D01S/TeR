@@ -79,6 +79,9 @@
     <Compile Include="mechanic.xaml.cs">
       <DependentUpon>mechanic.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MENU.xaml.cs">
+      <DependentUpon>MENU.xaml</DependentUpon>
+    </Compile>
     <Compile Include="mode.xaml.cs">
       <DependentUpon>mode.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,9 @@
     </Compile>
     <Compile Include="update.xaml.cs">
       <DependentUpon>update.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vhod.xaml.cs">
+      <DependentUpon>Vhod.xaml</DependentUpon>
     </Compile>
     <Compile Include="_class.xaml.cs">
       <DependentUpon>_class.xaml</DependentUpon>
@@ -167,6 +173,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MENU.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="mode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="update.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vhod.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
