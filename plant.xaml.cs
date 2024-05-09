@@ -21,16 +21,38 @@ namespace TeR
         private List<Растения> originalPlants;
         private List<Растения> plants;
         private readonly TEntities db;
+        private Frame MainFrame;
+        private bool isGuestUser;
 
-        public plant(TEntities entities)
+        public plant(TEntities entities, bool isGuestUser, Frame mainFrame)
         {
             InitializeComponent();
 
             db = entities;
+            MainFrame = mainFrame;
+            this.isGuestUser = isGuestUser;
+            UpdateUIBasedOnUserRole(isGuestUser, this);
+            
             originalPlants = db.Растения.ToList();
             plants = new List<Растения>(originalPlants);
             dataGrid.ItemsSource = plants;
         }
+        public void UpdateUIBasedOnUserRole(bool isGuestUser, plant plantPage)
+        {
+            if (isGuestUser)
+            {
+                DeleteRowButton.IsEnabled = false;
+                AddNewRowButton.IsEnabled = false;
+                SaveChangesButton.IsEnabled = false;
+            }
+            else
+            {
+                DeleteRowButton.IsEnabled = true;
+                AddNewRowButton.IsEnabled = true;
+                SaveChangesButton.IsEnabled = true;
+            }
+        }
+
 
         private void DeleteRowButton_Click(object sender, RoutedEventArgs e)
         {

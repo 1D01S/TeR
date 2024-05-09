@@ -21,15 +21,36 @@ namespace TeR
         private List<Биомы> originalBiomes;
         private List<Биомы> biomes;
         private readonly TEntities db;
+        private Frame MainFrame;
+        private bool isGuestUser;
 
-        public biome(TEntities entities)
+        public biome(TEntities entities, bool isGuestUser, Frame mainFrame)
         {
             InitializeComponent();
 
             db = entities;
+            MainFrame = mainFrame;
+            this.isGuestUser = isGuestUser;
+            UpdateUIBasedOnUserRole(isGuestUser, this);
+
             originalBiomes = db.Биомы.ToList();
             biomes = new List<Биомы>(originalBiomes);
             dataGrid.ItemsSource = biomes;
+        }
+        public void UpdateUIBasedOnUserRole(bool isGuestUser, biome biomePage)
+        {
+            if (isGuestUser)
+            {
+                DeleteRowButton.IsEnabled = false;
+                AddNewRowButton.IsEnabled = false;
+                SaveChangesButton.IsEnabled = false;
+            }
+            else
+            {
+                DeleteRowButton.IsEnabled = true;
+                AddNewRowButton.IsEnabled = true;
+                SaveChangesButton.IsEnabled = true;
+            }
         }
 
         private void DeleteRowButton_Click(object sender, RoutedEventArgs e)

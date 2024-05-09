@@ -19,10 +19,11 @@ namespace TeR
     {
         private readonly TEntities db;
         private bool isGuestUser;
-        public MENU()
+        public MENU(TEntities entities, bool isGuestUser)
         {
             InitializeComponent();
             db = new TEntities();
+            this.isGuestUser = isGuestUser;
             Application.Current.MainWindow.WindowState = WindowState.Maximized;
             Application.Current.MainWindow.WindowStyle = WindowStyle.None;
         }
@@ -32,32 +33,32 @@ namespace TeR
 
         private void Page1Button_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new update(db));
+            MainFrame.Navigate(new update(db, isGuestUser, MainFrame));
         }
 
         private void Page2Button_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new removed(db));
+            MainFrame.Navigate(new removed(db, isGuestUser, MainFrame));
         }
 
         private void ItemsButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new item(db));
+            MainFrame.Navigate(new item(db, isGuestUser, MainFrame));
         }
 
         private void PlantsButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new plant(db));
+            MainFrame.Navigate(new plant(db, isGuestUser, MainFrame));
         }
 
         private void CreaturesButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new creature(db));
+            MainFrame.Navigate(new creature(db, isGuestUser, MainFrame));
         }
 
         private void BiomesButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new biome(db));
+            MainFrame.Navigate(new biome(db, isGuestUser, MainFrame));
         }
 
         private void EventsButton_Click(object sender, RoutedEventArgs e)
@@ -68,22 +69,22 @@ namespace TeR
 
         private void GameModesButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new mode(db));
+            MainFrame.Navigate(new mode(db, isGuestUser, MainFrame));
         }
 
         private void MechanicsButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new mechanic(db));
+            MainFrame.Navigate(new mechanic(db, isGuestUser, MainFrame));
         }
 
         private void CharacterClassesButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new _class(db));
+            MainFrame.Navigate(new _class(db, isGuestUser, MainFrame));
         }
 
         private void AchievementsButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new achievement(db));
+            MainFrame.Navigate(new achievement(db, isGuestUser, MainFrame));
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

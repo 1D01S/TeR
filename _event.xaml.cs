@@ -22,6 +22,7 @@ namespace TeR
         private List<События> events;
         private readonly TEntities db;
         private Frame MainFrame;
+        private bool isGuestUser;
 
         public _event(TEntities entities, bool isGuestUser, Frame mainFrame)
         {
@@ -29,6 +30,7 @@ namespace TeR
 
             db = entities;
             MainFrame = mainFrame;
+            this.isGuestUser = isGuestUser;
             UpdateUIBasedOnUserRole(isGuestUser, this);
 
             originalEvents = db.События.ToList();
@@ -37,25 +39,16 @@ namespace TeR
         }
         public void UpdateUIBasedOnUserRole(bool isGuestUser, _event eventPage)
         {
-            // Use the IsGuestUser property from the App class
-            bool guestUser = (App.Current as App).IsGuestUser;
-
-            if (guestUser)
+            if (isGuestUser)
             {
-                // Disable or hide buttons and commands related to editing, adding, or deleting records
-                // For example:
-                // ...
-
-                // Disable the SaveChangesButton
+                eventPage.DeleteRowButton.IsEnabled = false;
+                eventPage.AddNewRowButton.IsEnabled = false;
                 eventPage.SaveChangesButton.IsEnabled = false;
             }
             else
             {
-                // Enable or show buttons and commands related to editing, adding, or deleting records
-                // For example:
-                // ...
-
-                // Enable the SaveChangesButton
+                eventPage.DeleteRowButton.IsEnabled = true;
+                eventPage.AddNewRowButton.IsEnabled = true;
                 eventPage.SaveChangesButton.IsEnabled = true;
             }
         }

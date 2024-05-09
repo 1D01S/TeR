@@ -53,12 +53,11 @@ namespace TeR
                 resultTextBlock.Text = "Вход выполнен успешно! 🎉";
 
                 // Open the MENU window
-                MENU menu = new MENU();
+                MENU menu = new MENU(db, false);
                 Dispatcher.Invoke(() => MainFrame.Navigate(menu));
 
                 // Navigate to the _event page after a successful login
-                _event eventPage = new _event(db, true, MainFrame);
-                eventPage.UpdateUIBasedOnUserRole(false, eventPage);
+                _event eventPage = new _event(db, false, MainFrame);
                 menu.Dispatcher.Invoke(() => menu.MainFrame.Navigate(eventPage));
 
                 isGuestUser = false;
@@ -77,14 +76,15 @@ namespace TeR
             (App.Current as App).IsGuestUser = true;
 
             // Open the MENU window
-            MENU menu = new MENU();
+            MENU menu = new MENU(db, true);
             Dispatcher.Invoke(() => MainFrame.Navigate(menu));
 
             // Navigate to the _event page after a successful login
-            _event eventPage = new _event(db, (App.Current as App).IsGuestUser, MainFrame);
+            _event eventPage = new _event(db, true, MainFrame);
             menu.Dispatcher.Invoke(() => eventPage.UpdateUIBasedOnUserRole((App.Current as App).IsGuestUser, eventPage));
             menu.Dispatcher.Invoke(() => menu.MainFrame.Navigate(eventPage));
         }
+
         private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
         {
             if (isGuestUser)

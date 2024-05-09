@@ -19,7 +19,7 @@
 
 
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1000" Height="45">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1100" Height="45">
             <Button Content="Выход" Click="ExitButton_Click" Margin="0,0,100,0" Height="34"/>
             <Button Content="История Обновлений" Click="Page1Button_Click" Margin="5"/>
             <Button Content="Удалённое" Click="Page2Button_Click" Margin="5"/>

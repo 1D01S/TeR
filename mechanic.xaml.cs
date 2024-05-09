@@ -21,15 +21,36 @@ namespace TeR
         private List<Механики> originalMechanics;
         private List<Механики> mechanics;
         private readonly TEntities db;
+        private Frame MainFrame;
+        private bool isGuestUser;
 
-        public mechanic(TEntities entities)
+        public mechanic(TEntities entities, bool isGuestUser, Frame mainFrame)
         {
             InitializeComponent();
 
             db = entities;
+            MainFrame = mainFrame;
+            this.isGuestUser = isGuestUser;
+            UpdateUIBasedOnUserRole(isGuestUser, this);
+
             originalMechanics = db.Механики.ToList();
             mechanics = new List<Механики>(originalMechanics);
             dataGrid.ItemsSource = mechanics;
+        }
+        public void UpdateUIBasedOnUserRole(bool isGuestUser, mechanic mechanicPage)
+        {
+            if (isGuestUser)
+            {
+                DeleteRowButton.IsEnabled = false;
+                AddNewRowButton.IsEnabled = false;
+                SaveChangesButton.IsEnabled = false;
+            }
+            else
+            {
+                DeleteRowButton.IsEnabled = true;
+                AddNewRowButton.IsEnabled = true;
+                SaveChangesButton.IsEnabled = true;
+            }
         }
 
         private void DeleteRowButton_Click(object sender, RoutedEventArgs e)

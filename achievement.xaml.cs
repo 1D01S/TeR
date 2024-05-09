@@ -21,15 +21,36 @@ namespace TeR
         private List<Отчивки> originalAchievements;
         private List<Отчивки> achievements;
         private readonly TEntities db;
+        private Frame MainFrame;
+        private bool isGuestUser;
 
-        public achievement(TEntities entities)
+        public achievement(TEntities entities, bool isGuestUser, Frame mainFrame)
         {
             InitializeComponent();
 
             db = entities;
+            MainFrame = mainFrame;
+            this.isGuestUser = isGuestUser;
+            UpdateUIBasedOnUserRole(isGuestUser, this);
+
             originalAchievements = db.Отчивки.ToList();
             achievements = new List<Отчивки>(originalAchievements);
             dataGrid.ItemsSource = achievements;
+        }
+        public void UpdateUIBasedOnUserRole(bool isGuestUser, achievement achievementPage)
+        {
+            if (isGuestUser)
+            {
+                DeleteRowButton.IsEnabled = false;
+                AddNewRowButton.IsEnabled = false;
+                SaveChangesButton.IsEnabled = false;
+            }
+            else
+            {
+                DeleteRowButton.IsEnabled = true;
+                AddNewRowButton.IsEnabled = true;
+                SaveChangesButton.IsEnabled = true;
+            }
         }
 
         private void DeleteRowButton_Click(object sender, RoutedEventArgs e)

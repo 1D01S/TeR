@@ -21,15 +21,36 @@ namespace TeR
         private List<Режимы_игры> originalModes;
         private List<Режимы_игры> gameModes;
         private readonly TEntities db;
+        private Frame MainFrame;
+        private bool isGuestUser;
 
-        public mode(TEntities entities)
+        public mode(TEntities entities, bool isGuestUser, Frame mainFrame)
         {
             InitializeComponent();
 
             db = entities;
+            MainFrame = mainFrame;
+            this.isGuestUser = isGuestUser;
+            UpdateUIBasedOnUserRole(isGuestUser, this);
+
             originalModes = db.Режимы_игры.ToList();
             gameModes = new List<Режимы_игры>(originalModes);
             dataGrid.ItemsSource = gameModes;
+        }
+        public void UpdateUIBasedOnUserRole(bool isGuestUser, mode modePage)
+        {
+            if (isGuestUser)
+            {
+                DeleteRowButton.IsEnabled = false;
+                AddNewRowButton.IsEnabled = false;
+                SaveChangesButton.IsEnabled = false;
+            }
+            else
+            {
+                DeleteRowButton.IsEnabled = true;
+                AddNewRowButton.IsEnabled = true;
+                SaveChangesButton.IsEnabled = true;
+            }
         }
 
         private void DeleteRowButton_Click(object sender, RoutedEventArgs e)

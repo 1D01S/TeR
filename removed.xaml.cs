@@ -21,15 +21,36 @@ namespace TeR
         private List<Удалённое> originalRemoved;
         private List<Удалённое> removedItems;
         private readonly TEntities db;
+        private Frame MainFrame;
+        private bool isGuestUser;
 
-        public removed(TEntities entities)
+        public removed(TEntities entities, bool isGuestUser, Frame mainFrame)
         {
             InitializeComponent();
 
             db = entities;
+            MainFrame = mainFrame;
+            this.isGuestUser = isGuestUser;
+            UpdateUIBasedOnUserRole(isGuestUser, this);
+
             originalRemoved = db.Удалённое.ToList();
             removedItems = new List<Удалённое>(originalRemoved);
             dataGrid.ItemsSource = removedItems;
+        }
+        public void UpdateUIBasedOnUserRole(bool isGuestUser, removed removedPage)
+        {
+            if (isGuestUser)
+            {
+                DeleteRowButton.IsEnabled = false;
+                AddNewRowButton.IsEnabled = false;
+                SaveChangesButton.IsEnabled = false;
+            }
+            else
+            {
+                DeleteRowButton.IsEnabled = true;
+                AddNewRowButton.IsEnabled = true;
+                SaveChangesButton.IsEnabled = true;
+            }
         }
 
         private void DeleteRowButton_Click(object sender, RoutedEventArgs e)

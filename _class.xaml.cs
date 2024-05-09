@@ -21,15 +21,36 @@ namespace TeR
         private List<Классы_персонажей> originalClasses;
         private List<Классы_персонажей> classes;
         private readonly TEntities db;
+        private Frame MainFrame;
+        private bool isGuestUser;
 
-        public _class(TEntities entities)
+        public _class(TEntities entities, bool isGuestUser, Frame mainFrame)
         {
             InitializeComponent();
 
             db = entities;
+            MainFrame = mainFrame;
+            this.isGuestUser = isGuestUser;
+            UpdateUIBasedOnUserRole(isGuestUser, this);
+
             originalClasses = db.Классы_персонажей.ToList();
             classes = new List<Классы_персонажей>(originalClasses);
             dataGrid.ItemsSource = classes;
+        }
+        public void UpdateUIBasedOnUserRole(bool isGuestUser, _class _class)
+        {
+            if (isGuestUser)
+            {
+                DeleteRowButton.IsEnabled = false;
+                AddNewRowButton.IsEnabled = false;
+                SaveChangesButton.IsEnabled = false;
+            }
+            else
+            {
+                DeleteRowButton.IsEnabled = true;
+                AddNewRowButton.IsEnabled = true;
+                SaveChangesButton.IsEnabled = true;
+            }
         }
 
         private void DeleteRowButton_Click(object sender, RoutedEventArgs e)
