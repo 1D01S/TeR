@@ -18,7 +18,7 @@ namespace TeR
     public partial class MENU : Page
     {
         private readonly TEntities db;
-
+        private bool isGuestUser;
         public MENU()
         {
             InitializeComponent();
@@ -27,7 +27,8 @@ namespace TeR
             Application.Current.MainWindow.WindowStyle = WindowStyle.None;
         }
 
-        
+
+
 
         private void Page1Button_Click(object sender, RoutedEventArgs e)
         {
@@ -61,7 +62,8 @@ namespace TeR
 
         private void EventsButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new _event(db));
+            // In the EventsButton_Click method
+            MainFrame.Navigate(new _event(db, isGuestUser, MainFrame));
         }
 
         private void GameModesButton_Click(object sender, RoutedEventArgs e)

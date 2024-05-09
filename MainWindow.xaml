@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeR"
         mc:Ignorable="d"
-        Title="T" Height="450" Width="800">
-    
+        Title="T" Height="450" Width="800">    
     
     <Grid>
         <Grid.Background>
@@ -20,6 +19,7 @@
             <PasswordBox x:Name="passwordBox" Margin="5" Width="262"/>
             <TextBlock x:Name="resultTextBlock" Margin="5" Width="262"/>
             <Button Content="Войти" Click="LoginButton_Click" Height="21" Margin="5" Width="262"/>
+            <Button Content="Войти как гость" Click="GuestLoginButton_Click" Height="21" Margin="5" Width="262"/>
         </StackPanel>
         <Frame x:Name="MainFrame" />
     </Grid>

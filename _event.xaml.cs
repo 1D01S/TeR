@@ -21,15 +21,43 @@ namespace TeR
         private List<События> originalEvents;
         private List<События> events;
         private readonly TEntities db;
+        private Frame MainFrame;
 
-        public _event(TEntities entities)
+        public _event(TEntities entities, bool isGuestUser, Frame mainFrame)
         {
             InitializeComponent();
 
             db = entities;
+            MainFrame = mainFrame;
+            UpdateUIBasedOnUserRole(isGuestUser, this);
+
             originalEvents = db.События.ToList();
             events = new List<События>(originalEvents);
             dataGrid.ItemsSource = events;
+        }
+        public void UpdateUIBasedOnUserRole(bool isGuestUser, _event eventPage)
+        {
+            // Use the IsGuestUser property from the App class
+            bool guestUser = (App.Current as App).IsGuestUser;
+
+            if (guestUser)
+            {
+                // Disable or hide buttons and commands related to editing, adding, or deleting records
+                // For example:
+                // ...
+
+                // Disable the SaveChangesButton
+                eventPage.SaveChangesButton.IsEnabled = false;
+            }
+            else
+            {
+                // Enable or show buttons and commands related to editing, adding, or deleting records
+                // For example:
+                // ...
+
+                // Enable the SaveChangesButton
+                eventPage.SaveChangesButton.IsEnabled = true;
+            }
         }
 
         private void DeleteRowButton_Click(object sender, RoutedEventArgs e)

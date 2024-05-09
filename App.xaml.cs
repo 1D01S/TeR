@@ -13,5 +13,6 @@ namespace TeR
     /// </summary>
     public partial class App : Application
     {
+        public bool IsGuestUser { get; set; }
     }
 }
