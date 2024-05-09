@@ -22,6 +22,9 @@
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" CellEditEnding="dataGrid_CellEditEnding">
+                <DataGrid.Background>
+                    <ImageBrush/>
+                </DataGrid.Background>
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding event_id, UpdateSourceTrigger=PropertyChanged}" Header="ID"/>
                     <DataGridTextColumn Binding="{Binding название, UpdateSourceTrigger=PropertyChanged}" Header="Название"/>

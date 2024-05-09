@@ -11,29 +11,47 @@
     <Page.Background>
         <ImageBrush ImageSource="/7bcxkdqxdjt31.jpg"/>
     </Page.Background>
-    <Grid>
+    <Grid Margin="0,0,-238,-158">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="597*"/>
+            <ColumnDefinition Width="203*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="45.003"/>
-            <RowDefinition/>
+            <RowDefinition Height="38*"/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="34*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="28*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
 
 
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1100" Height="45">
-            <Button Content="Выход" Click="ExitButton_Click" Margin="0,0,100,0" Height="34"/>
-            <Button Content="История Обновлений" Click="Page1Button_Click" Margin="5"/>
-            <Button Content="Удалённое" Click="Page2Button_Click" Margin="5"/>
-            <Button Content="Предметы" Click="ItemsButton_Click" Margin="5"/>
-            <Button Content="Растения" Click="PlantsButton_Click" Margin="5"/>
-            <Button Content="Существа" Click="CreaturesButton_Click" Margin="5"/>
-            <Button Content="Биомы" Click="BiomesButton_Click" Margin="5"/>
-            <Button Content="События" Click="EventsButton_Click" Margin="5"/>
-            <Button Content="Режимы игры" Click="GameModesButton_Click" Margin="5"/>
-            <Button Content="Механики" Click="MechanicsButton_Click" Margin="5"/>
-            <Button Content="Классы персонажей" Click="CharacterClassesButton_Click" Margin="5"/>
-            <Button Content="Достижения" Click="AchievementsButton_Click" Margin="5"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="672" Margin="13,-32,0,0" Grid.RowSpan="15" Grid.Column="1">
+            <Button Content="Выход" Click="ExitButton_Click" Margin="50"/>
+            <Button Content="История Обновлений" Click="Page1Button_Click" Margin="5" Padding="10"/>
+            <Button Content="Удалённое" Click="Page2Button_Click" Margin="5" Padding="10"/>
+            <Button Content="Предметы" Click="ItemsButton_Click" Margin="5" Padding="10"/>
+            <Button Content="Растения" Click="PlantsButton_Click" Margin="5" Padding="10"/>
+            <Button Content="Существа" Click="CreaturesButton_Click" Margin="5" Padding="10"/>
+            <Button Content="Биомы" Click="BiomesButton_Click" Margin="5" Padding="10"/>
+            <Button Content="События" Click="EventsButton_Click" Margin="5" Padding="10"/>
+            <Button Content="Режимы игры" Click="GameModesButton_Click" Margin="5" Padding="10"/>
+            <Button Content="Механики" Click="MechanicsButton_Click" Margin="5" Padding="10"/>
+            <Button Content="Классы персонажей" Click="CharacterClassesButton_Click" Margin="5" Padding="10"/>
+            <Button Content="Достижения" Click="AchievementsButton_Click" Margin="5" Padding="10"/>
         </StackPanel>
 
-        <Frame Name="MainFrame" Margin="0,10,0,0" Grid.Row="1"/>
+        <Frame Name="MainFrame" Margin="10,23,2,21" Grid.RowSpan="12"/>
     </Grid>
 </Page>
