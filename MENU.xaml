@@ -9,8 +9,9 @@
       Title="MENU">
 
     <Page.Background>
-        <ImageBrush ImageSource="/7bcxkdqxdjt31.jpg"/>
+        <ImageBrush ImageSource="/bluexl-34013550-1026450798.png"/>
     </Page.Background>
+
     <Grid Margin="0,0,-238,-158">
 
         <Grid.ColumnDefinitions>
@@ -37,21 +38,69 @@
 
 
 
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="672" Margin="13,-32,0,0" Grid.RowSpan="15" Grid.Column="1">
-            <Button Content="Выход" Click="ExitButton_Click" Margin="50"/>
-            <Button Content="История Обновлений" Click="Page1Button_Click" Margin="5" Padding="10"/>
-            <Button Content="Удалённое" Click="Page2Button_Click" Margin="5" Padding="10"/>
-            <Button Content="Предметы" Click="ItemsButton_Click" Margin="5" Padding="10"/>
-            <Button Content="Растения" Click="PlantsButton_Click" Margin="5" Padding="10"/>
-            <Button Content="Существа" Click="CreaturesButton_Click" Margin="5" Padding="10"/>
-            <Button Content="Биомы" Click="BiomesButton_Click" Margin="5" Padding="10"/>
-            <Button Content="События" Click="EventsButton_Click" Margin="5" Padding="10"/>
-            <Button Content="Режимы игры" Click="GameModesButton_Click" Margin="5" Padding="10"/>
-            <Button Content="Механики" Click="MechanicsButton_Click" Margin="5" Padding="10"/>
-            <Button Content="Классы персонажей" Click="CharacterClassesButton_Click" Margin="5" Padding="10"/>
-            <Button Content="Достижения" Click="AchievementsButton_Click" Margin="5" Padding="10"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="820" Margin="13,-32,0,0" Grid.RowSpan="15" Grid.Column="1">
+            <Button Click="ExitButton_Click" Margin="20" FontFamily="Impact" Width="115" Height="115" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/9. Close or Multiply.png"/>
+                </Button.Background>
+            </Button>
+            <Button Content="История Обновлений" Click="Page1Button_Click" Margin="1" Padding="10" FontFamily="Impact" FontSize="20" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png"/>
+                </Button.Background>
+            </Button>
+            <Button Content="Удалённое" Click="Page2Button_Click" Margin="1" Padding="10" FontFamily="Impact" FontSize="20" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png"/>
+                </Button.Background>
+            </Button>
+            <Button Content="Предметы" Click="ItemsButton_Click" Margin="1" Padding="10" FontFamily="Impact" FontSize="20" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png"/>
+                </Button.Background>
+            </Button>
+            <Button Content="Растения" Click="PlantsButton_Click" Margin="1" Padding="10" FontFamily="Impact" FontSize="20" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png"/>
+                </Button.Background>
+            </Button>
+            <Button Content="Существа" Click="CreaturesButton_Click" Margin="1" Padding="10" FontFamily="Impact" FontSize="20" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png"/>
+                </Button.Background>
+            </Button>
+            <Button Content="Биомы" Click="BiomesButton_Click" Margin="1" Padding="10" FontFamily="Impact" FontSize="20" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png"/>
+                </Button.Background>
+            </Button>
+            <Button Content="События" Click="EventsButton_Click" Margin="1" Padding="10" FontFamily="Impact" FontSize="20" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png"/>
+                </Button.Background>
+            </Button>
+            <Button Content="Режимы игры" Click="GameModesButton_Click" Margin="1" Padding="10" FontFamily="Impact" FontSize="20" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png"/>
+                </Button.Background>
+            </Button>
+            <Button Content="Механики" Click="MechanicsButton_Click" Margin="1" Padding="10" FontFamily="Impact" FontSize="20" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png"/>
+                </Button.Background>
+            </Button>
+            <Button Content="Классы персонажей" Click="CharacterClassesButton_Click" Margin="1" Padding="10" FontFamily="Impact" FontSize="20" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png"/>
+                </Button.Background>
+            </Button>
+            <Button Content="Достижения" Click="AchievementsButton_Click" Margin="1" Padding="10" FontFamily="Impact" FontSize="20" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png"/>
+                </Button.Background>
+            </Button>
         </StackPanel>
 
-        <Frame Name="MainFrame" Margin="10,23,2,21" Grid.RowSpan="12"/>
+        <Frame Name="MainFrame" Margin="10,51,179,28" Grid.RowSpan="11"/>
     </Grid>
 </Page>

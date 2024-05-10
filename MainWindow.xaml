@@ -5,21 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeR"
         mc:Ignorable="d"
-        Title="T" Height="450" Width="800">    
-    
+        Title="T" Height="450" Width="800" ResizeMode="NoResize"
+        ShowInTaskbar="False" WindowStyle="None">
+
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/7bcxkdqxdjt31.jpg"/>
+            <ImageBrush ImageSource="/bluexl-33933541-3368996410.png"/>
         </Grid.Background>
-        
-        <StackPanel Margin="106,104,106,104">
-            <TextBlock Text="Имя пользователя:" Margin="5" Width="262"/>
-            <TextBox x:Name="usernameTextBox" Margin="5" Width="262"/>
-            <TextBlock Text="Пароль:" Margin="5" Width="262"/>
-            <PasswordBox x:Name="passwordBox" Margin="5" Width="262"/>
-            <TextBlock x:Name="resultTextBlock" Margin="5" Width="262"/>
-            <Button Content="Войти" Click="LoginButton_Click" Height="21" Margin="5" Width="262"/>
-            <Button Content="Войти как гость" Click="GuestLoginButton_Click" Height="21" Margin="5" Width="262"/>
+
+        <Button Click="ExitButton_Click" Margin="539,391,216,10" FontFamily="Impact" FontSize="24" BorderBrush="Transparent" BorderThickness="0" Opacity="1">
+            <Button.Background>
+                <ImageBrush ImageSource="/9. Close or Multiply.png" TileMode="None" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
+
+        <StackPanel Margin="194,45,216,37">
+            <TextBlock Text="Имя пользователя:" Margin="5" Width="262" FontSize="20" FontFamily="Impact"/>
+            <TextBox x:Name="usernameTextBox" Margin="5" Width="262" Height="25"/>
+            <TextBlock Text="Пароль:" Margin="5" Width="262" FontSize="20" FontFamily="Impact"/>
+            <PasswordBox x:Name="passwordBox" Margin="10" Width="262" Height="25"/>
+            <TextBlock x:Name="resultTextBlock" Margin="1" Width="262" Height="17" FontSize="8" FontFamily="Impact"/>
+            <Button Content="Войти" Click="LoginButton_Click" Height="45" Margin="10" Width="260" FontFamily="Impact" FontSize="24" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png" TileMode="None" Stretch="Fill"/>
+                </Button.Background>
+            </Button>
+            <Button Content="Войти как гость" Click="GuestLoginButton_Click" Height="45" Margin="10" Width="260" FontFamily="Impact" FontSize="24" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/0000.png" Stretch="Fill"/>
+                </Button.Background>
+            </Button>
         </StackPanel>
         <Frame x:Name="MainFrame" />
     </Grid>

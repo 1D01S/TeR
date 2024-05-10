@@ -52,7 +52,7 @@ namespace TeR
                 eventPage.SaveChangesButton.IsEnabled = true;
             }
         }
-
+        
         private void DeleteRowButton_Click(object sender, RoutedEventArgs e)
         {
             if (dataGrid.SelectedItem != null)

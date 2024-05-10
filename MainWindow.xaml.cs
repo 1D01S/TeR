@@ -25,8 +25,6 @@ namespace TeR
         {
             InitializeComponent();
             db = new TEntities();
-            Application.Current.MainWindow.WindowState = WindowState.Maximized;
-            Application.Current.MainWindow.WindowStyle = WindowStyle.None;
             UpdateUIBasedOnUserRole();
         }
         private void UpdateUIBasedOnUserRole()
@@ -83,6 +81,10 @@ namespace TeR
             _event eventPage = new _event(db, true, MainFrame);
             menu.Dispatcher.Invoke(() => eventPage.UpdateUIBasedOnUserRole((App.Current as App).IsGuestUser, eventPage));
             menu.Dispatcher.Invoke(() => menu.MainFrame.Navigate(eventPage));
+        }
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         private void SaveChangesButton_Click(object sender, RoutedEventArgs e)

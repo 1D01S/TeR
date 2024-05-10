@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:TeR"
       mc:Ignorable="d" 
            d:DesignHeight="450" d:DesignWidth="800" Background="White"
-      Title="item">
+      Title="item" Opacity="0.8">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -15,13 +15,25 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <Button x:Name="DeleteRowButton" Content="Удалить выбранную стр." Click="DeleteRowButton_Click" Width="150" Margin="10,0,0,0"/>
-            <Button x:Name="AddNewRowButton" Content="Добавить новую строку" Click="AddNewRowButton_Click" Width="150" Margin="10,0,0,0"/>
-            <Button x:Name="SaveChangesButton" Content="Сохранить" Click="SaveChangesButton_Click" Width="100" Margin="10,0,0,0"/>
+            <Button x:Name="DeleteRowButton" Content="Удалить выбранную стр." Click="DeleteRowButton_Click" Width="150" Margin="10,0,0,0" FontFamily="Impact" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/1715359938767.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="AddNewRowButton" Content="Добавить новую строку" Click="AddNewRowButton_Click" Width="150" Margin="10,0,0,0" FontFamily="Impact" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/1715359938767.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="SaveChangesButton" Content="Сохранить" Click="SaveChangesButton_Click" Width="100" Margin="10,0,0,0" FontFamily="Impact" OpacityMask="#FF333232" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/1715359938767.png"/>
+                </Button.Background>
+            </Button>
         </StackPanel>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" CellEditEnding="dataGrid_CellEditEnding">
+            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" CellEditEnding="dataGrid_CellEditEnding" FontFamily="Impact">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding item_id, UpdateSourceTrigger=PropertyChanged}" Header="ID"/>
                     <DataGridTextColumn Binding="{Binding название, UpdateSourceTrigger=PropertyChanged}" Header="Название"/>
